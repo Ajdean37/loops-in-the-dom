@@ -3,3 +3,7 @@
     border: 2px dotted blue;
     border-radius: 20px;
   }
+
+  .star-flights {
+    border-radius: 50px;
+  }

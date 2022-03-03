@@ -6,6 +6,7 @@ let apiData = {};
 let allFlights = [];
 
 
+
 //api data call
 async function fetchData() {
   apiData = await getData( latestLaunchUrl );
@@ -14,10 +15,12 @@ async function fetchData() {
 
   let filteredFlights = getFilteredFlights();
   let aFlights = getAFlights();
+  let starFlights = getStarFlights();
 
   renderFlights( allFlights, 'all-data' );
   renderFlights( filteredFlights, 'filtered-data' );
-  handleAppendLaunchesThatStartWithA( aFlights, 'a-flights');
+  renderFlights( aFlights, 'a-flights');
+  renderFlights( starFlights, 'star-flights');
 
 }
 
@@ -57,14 +60,27 @@ async function getData(url) {
     return filteredFlights;
   }
 
-  function getAflights() {
-    
+  function getAFlights() {
+    let aFlights = allFlights.filter( item => {
+      if ( item.name.startsWith("A") ) {
+        return item;
+      }
+    });
+    return aFlights;
   }
 
-  //add launches to a list that start with the letter A in their name attribute
 
-function handleAppendLaunchesThatStartWithA() {
-
+function getStarFlights() {
+  let starFlights = allFlights.filter( item => {
+    if ( item.cores.length > 1 ) {
+      return item;
+    }
+  });
+  return starFlights;
 }
 
 fetchData();
+
+function turnColor() {
+  document.body.style.backgroundColor = 'green';
+}
