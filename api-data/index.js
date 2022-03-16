@@ -83,4 +83,21 @@ fetchData();
 
 function turnColor() {
   document.body.style.backgroundColor = 'green';
+  let el = document.createElement("li");
+  el.innerHTML = prompt("Add something");
+  document.getElementById("star-flights").appendChild(el);
+}
+
+function removeNodesByClass() {
+  let els = document.querySelectorAll(".remove");
+  for (const item of els) {
+    item.remove();
+  }
+  console.log(els);
+}
+
+function removeNodeById() {
+  let el = document.querySelector("#target-1");
+  el.remove();
+  
 }
